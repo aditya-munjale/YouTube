@@ -1,0 +1,12 @@
+- Main focus on functionality 
+
+- Task 1:
+  - After click on menu button it should collaps
+  - create redux store to store state 
+  - installed redux / redux-store
+  - created store 
+  - created slice
+  - provided our store to app
+
+  - How to check out store working fine or not?
+    - extension (Redux dev tool)
