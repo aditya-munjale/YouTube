@@ -15,3 +15,12 @@
     - store → the whole Redux store
     - store.app → the state managed by appSlice
     - store.app.isMenuOpen → the actual value (true/false)
+
+- Task 2:
+  - Created button lists
+
+
+- Task 3:
+  - Build VideoContainer (Accessing data from API)
+
+
