@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
 
 const Head = () => {
+  //useDispatch() to send actions
   const dispatch = useDispatch();
 
   const toogleMenuHandler = () => {

@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 const Sidebar = () => {
+  //useSelector() to read state
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
 
   // Early Return pattern

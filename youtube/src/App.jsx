@@ -8,10 +8,15 @@ import { Provider } from "react-redux";
 const App = () => {
   return (
     <Provider store={store}>
-      <div>
+      <div className="flex flex-col min-h-screen">
+        {/* Header at the top */}
         <Head />
-        <Sidebar />
-        <MainContainer />
+
+        {/* Sidebar + MainContent */}
+        <div className="flex flex-1">
+          <Sidebar />
+          <MainContainer />
+        </div>
       </div>
     </Provider>
   );
