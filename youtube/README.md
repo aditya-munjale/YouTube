@@ -10,3 +10,4 @@
 
   - How to check out store working fine or not?
     - extension (Redux dev tool)
+    - useSelector (subscribing specific part of out code with redux store)
