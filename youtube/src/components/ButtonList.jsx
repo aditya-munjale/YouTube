@@ -16,11 +16,11 @@ const ButtonList = () => {
   ];
 
   return (
-    <div className="flex gap-2 overflow-x-auto py-2 px-4 bg-white shadow-sm">
+    <div className="flex gap-3 py-4 px-6 bg-white shadow-sm overflow-x-auto no-scrollbar">
       {btnList.map((btn, index) => (
         <button
           key={index}
-          className="px-4 py-2 bg-gray-100 rounded-full hover:bg-gray-200 text-black whitespace-nowrap"
+          className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 rounded-full text-sm font-medium whitespace-nowrap transition-colors duration-200 border border-gray-200"
         >
           {btn}
         </button>
