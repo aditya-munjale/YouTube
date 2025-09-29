@@ -1,11 +1,20 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { toggleMenu } from "../utils/appSlice";
 
 const Head = () => {
+  const dispatch = useDispatch();
+
+  const toogleMenuHandler = () => {
+    dispatch(toggleMenu());
+  };
+
   return (
     <header className="w-full flex items-center justify-between px-4 py-2 bg-white shadow-md">
       {/* Left Section */}
       <div className="flex items-center gap-4">
         <img
+          onClick={() => toogleMenuHandler()}
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkNEBO2OUKQjP-RSbIZae3jIq76g3rMrn9vQ&s"
           alt="menu"
           className="w-8 h-8 cursor-pointer hover:opacity-80"
