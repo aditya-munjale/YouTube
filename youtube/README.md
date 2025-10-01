@@ -32,6 +32,8 @@
     It allows for the creation of shared layouts, such as a navigation bar or sidebar, which remain consistent across multiple pages while dynamically rendering different content based on the current route
 
 
-
+- Task 5: Making cards clickable
+    - used Link component for move to another page
+    - also made Home clickable 
 
  
