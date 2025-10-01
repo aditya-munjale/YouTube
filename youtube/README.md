@@ -40,3 +40,9 @@
 - Task 6: When i go to video it should automatically colaps sidebar (by default it should close)
   - dispatch an action
   - will create closeMenu action
+
+
+
+- Task 7:
+  - created watchPage
+  - fetching video by video ID using api
