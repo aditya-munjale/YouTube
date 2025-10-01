@@ -1,9 +1,28 @@
 import React from "react";
 import Head from "./components/Head";
 import MainContainer from "./components/MainContainer";
-import Sidebar from "./components/Sidebar";
+import Body from "./components/Body";
 import store from "./utils/store";
 import { Provider } from "react-redux";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import WatchPage from "./components/WatchPage";
+
+const appRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <Body />,
+    children: [
+      {
+        path: "/",
+        element: <MainContainer />,
+      },
+      {
+        path: "watch",
+        element: <WatchPage />,
+      },
+    ],
+  },
+]);
 
 const App = () => {
   return (
@@ -11,12 +30,7 @@ const App = () => {
       <div className="flex flex-col min-h-screen">
         {/* Header at the top */}
         <Head />
-
-        {/* Sidebar + MainContent */}
-        <div className="flex flex-1">
-          <Sidebar />
-          <MainContainer />
-        </div>
+        <RouterProvider router={appRouter} />
       </div>
     </Provider>
   );
