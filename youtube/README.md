@@ -27,13 +27,16 @@
   - Build VideoContainer (Accessing data from API)
 
 - Task 4: (setup Routing)
-  - what is outlet? 
+
+  - what is outlet?
     --> The Outlet component in React Router DOM is a placeholder used within a parent route component to render its child route elements, enabling nested UI to display when child routes are matched.
     It allows for the creation of shared layouts, such as a navigation bar or sidebar, which remain consistent across multiple pages while dynamically rendering different content based on the current route
 
-
 - Task 5: Making cards clickable
-    - used Link component for move to another page
-    - also made Home clickable 
 
- 
+  - used Link component for move to another page
+  - also made Home clickable
+
+- Task 6: When i go to video it should automatically colaps sidebar (by default it should close)
+  - dispatch an action
+  - will create closeMenu action
