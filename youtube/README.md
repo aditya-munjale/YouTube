@@ -46,3 +46,9 @@
 - Task 7:
   - created watchPage
   - fetching video by video ID using api
+
+
+- Task 8: Build Search bar
+  - Debouncing : 
+  - if difference btw 2 key strokes is < 200ms -> Decline API call
+  - if difference btw 2 key strokes is > 200ms -> make an API call

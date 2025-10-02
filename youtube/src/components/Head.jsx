@@ -1,10 +1,13 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
+import { useState } from "react";
 
 const Head = () => {
-  const dispatch = useDispatch();
+  const [searchQuery, setSearchQuery] = useState("");
+  console.log(searchQuery);
 
+  const dispatch = useDispatch();
   const toogleMenuHandler = () => {
     dispatch(toggleMenu());
   };
@@ -38,6 +41,8 @@ const Head = () => {
         <div className="flex w-full">
           <input
             type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search"
             className="w-full px-4 py-3 border border-gray-300 rounded-l-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
           />

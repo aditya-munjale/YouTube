@@ -8,7 +8,7 @@ const Sidebar = () => {
   if (!isMenuOpen) return null;
 
   return (
-    <div className="w-64 bg-white h-[calc(100vh-64px)] sticky top-16 overflow-y-auto border-r border-gray-200 flex-shrink-0">
+    <div className="w-64 bg-white h-[calc(100vh-64px)] sticky top-16 overflow-y-auto border-r border-gray-200 flex-shrink-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
       <div className="p-4">
         {/* First Section */}
         <ul className="space-y-1 mb-6">
