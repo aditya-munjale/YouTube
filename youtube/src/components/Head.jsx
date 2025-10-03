@@ -1,11 +1,35 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
 import { useState } from "react";
 
 const Head = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  console.log(searchQuery);
+
+  useEffect(() => {
+    // This timer will be cleared on every keystroke
+    const timer = setTimeout(() => {
+      if (searchQuery) {
+        getSearchSugestions();
+      }
+    }, 200);
+
+    // This is the cleanup function that useEffect returns.
+    // It will be called before the next time the effect runs.
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [searchQuery]);
+
+  const getSearchSugestions = async () => {
+    // Call your proxy server now
+    const data = await fetch(
+      `http://localhost:3001/api/suggestions?q=${searchQuery}`
+    );
+    const json = await data.json();
+
+    console.log(json[1]);
+  };
 
   const dispatch = useDispatch();
   const toogleMenuHandler = () => {

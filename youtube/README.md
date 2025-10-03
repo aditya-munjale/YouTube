@@ -52,3 +52,9 @@
   - Debouncing : 
   - if difference btw 2 key strokes is < 200ms -> Decline API call
   - if difference btw 2 key strokes is > 200ms -> make an API call
+
+
+  - solved one error 
+  - Access to fetch at 'http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=Query' from origin 'http://localhost:5173' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+
+  - To solve it created proxy server 
