@@ -58,3 +58,4 @@
   - Access to fetch at 'http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=Query' from origin 'http://localhost:5173' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
 
   - To solve it created proxy server 
+  - Now we need to run node server.js also in another terminal --> to run this 

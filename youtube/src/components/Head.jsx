@@ -5,9 +5,10 @@ import { useState } from "react";
 
 const Head = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
   useEffect(() => {
-    // This timer will be cleared on every keystroke
     const timer = setTimeout(() => {
       if (searchQuery) {
         getSearchSugestions();
@@ -28,7 +29,7 @@ const Head = () => {
     );
     const json = await data.json();
 
-    console.log(json[1]);
+    setSuggestions(json[1]);
   };
 
   const dispatch = useDispatch();
@@ -61,14 +62,16 @@ const Head = () => {
       </div>
 
       {/* Middle Section */}
-      <div className="flex items-center flex-1 max-w-2xl mx-8">
+      <div className="flex items-center flex-1 max-w-2xl mx-8 relative">
         <div className="flex w-full">
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
+            onFocus={() => setShowSuggestions(true)}
+            onBlur={() => setShowSuggestions(false)}
             placeholder="Search"
-            className="w-full px-4 py-3 border border-gray-300 rounded-l-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+            className="w-full px-4 py-3 border border-gray-300 rounded-l-full focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-sm"
           />
           <button className="px-6 py-3 bg-gray-100 border border-gray-300 border-l-0 rounded-r-full hover:bg-gray-200 transition-colors duration-200 text-gray-600 font-medium">
             <svg
@@ -86,6 +89,35 @@ const Head = () => {
             </svg>
           </button>
         </div>
+
+        {/* Search Suggestions Dropdown */}
+        {showSuggestions && (
+          <div className="absolute top-full left-0 right-0 bg-white py-2 mt-1 shadow-lg rounded-lg border border-gray-200 z-50 max-h-80 overflow-y-auto">
+            <ul>
+              {suggestions.map((s, index) => (
+                <li
+                  key={index}
+                  className="flex items-center gap-3 py-2 px-4 hover:bg-gray-100 cursor-pointer text-sm text-gray-800"
+                >
+                  <svg
+                    className="w-4 h-4 text-gray-500 flex-shrink-0"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    />
+                  </svg>
+                  <span className="truncate">{s}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
 
       {/* Right Section */}
