@@ -59,3 +59,13 @@
 
   - To solve it created proxy server 
   - Now we need to run node server.js also in another terminal --> to run this 
+
+
+ - Task 9: [Build well organized search] when i go to search & i type same keyword again then it should not make same API call again 
+
+   - if i store search result in array. TC:O(n)
+   - if i store search result in object. TC: O(1)
+
+   - Problem is that when i search something then it makes API call but, also when i  backspace or remove from last still it is making API calls 
+
+   

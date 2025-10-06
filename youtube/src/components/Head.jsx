@@ -1,16 +1,31 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
 import { useState } from "react";
+import { cacheResults } from "../utils/searchSlice";
 
 const Head = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
+  const searchCache = useSelector((store) => store.search);
+
+  const dispatch = useDispatch();
+
+  /**
+   * searchCache = {
+   *     iphone : ["iphone 11", "iphone 12"]
+   * }
+   * seearchQuery = iphone
+   */
+
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (searchQuery) {
+      // if searchCache contain searchQuery i.e iphone then it will set searchQuery(iphone) from searchCache it set suggestions of iphone key values from object
+      if (searchCache[searchQuery]) {
+        setSuggestions(searchCache[searchQuery]);
+      } else {
         getSearchSugestions();
       }
     }, 200);
@@ -23,6 +38,12 @@ const Head = () => {
   }, [searchQuery]);
 
   const getSearchSugestions = async () => {
+    // 🛑 Don’t call API for empty or whitespace-only queries
+    if (!searchQuery.trim()) {
+      setSuggestions([]);
+      return;
+    }
+
     // Call your proxy server now
     const data = await fetch(
       `http://localhost:3001/api/suggestions?q=${searchQuery}`
@@ -30,9 +51,18 @@ const Head = () => {
     const json = await data.json();
 
     setSuggestions(json[1]);
+
+    // UPDATE
+    // if searchQuery is not present in my searchCache then store it n Cache
+    // using dispatch an action
+
+    dispatch(
+      cacheResults({
+        [searchQuery]: json[1],
+      })
+    );
   };
 
-  const dispatch = useDispatch();
   const toogleMenuHandler = () => {
     dispatch(toggleMenu());
   };
@@ -94,7 +124,7 @@ const Head = () => {
         {showSuggestions && (
           <div className="absolute top-full left-0 right-0 bg-white py-2 mt-1 shadow-lg rounded-lg border border-gray-200 z-50 max-h-80 overflow-y-auto">
             <ul>
-              {suggestions.map((s, index) => (
+              {(suggestions || []).map((s, index) => (
                 <li
                   key={index}
                   className="flex items-center gap-3 py-2 px-4 hover:bg-gray-100 cursor-pointer text-sm text-gray-800"
