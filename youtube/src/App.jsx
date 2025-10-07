@@ -1,11 +1,11 @@
 import React from "react";
-import Head from "./components/Head";
-import MainContainer from "./components/MainContainer";
-import Body from "./components/Body";
-import store from "./utils/store";
 import { Provider } from "react-redux";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import store from "./utils/store";
+import Body from "./components/Body";
+import MainContainer from "./components/MainContainer";
 import WatchPage from "./components/WatchPage";
+import SearchResults from "./components/SearchResults";
 
 const appRouter = createBrowserRouter([
   {
@@ -20,6 +20,10 @@ const appRouter = createBrowserRouter([
         path: "watch",
         element: <WatchPage />,
       },
+      {
+        path: "results",
+        element: <SearchResults />,
+      },
     ],
   },
 ]);
@@ -27,11 +31,7 @@ const appRouter = createBrowserRouter([
 const App = () => {
   return (
     <Provider store={store}>
-      <div className="flex flex-col min-h-screen">
-        {/* Header at the top */}
-        <Head />
-        <RouterProvider router={appRouter} />
-      </div>
+      <RouterProvider router={appRouter} />
     </Provider>
   );
 };
